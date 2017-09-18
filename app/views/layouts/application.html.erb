@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>thehub</title>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'nav' %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <%= render 'alerts' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render 'footer' %>
+  </body>
+</html>
