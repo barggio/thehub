@@ -1,0 +1,11 @@
+<script src="https://dashboard.mckesson.com/javascripts/api/tableau-2.min.js"></script>
+
+<div id="vizContainer"></div>
+<script>
+    function initViz(){
+        var containerDiv = document.getElementById("vizContainer");
+        url = view_html;
+        var viz = new tableau.Vix(containerDiv, url);
+        
+    }
+</script>

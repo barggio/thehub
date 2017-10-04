@@ -1,0 +1,13 @@
+default: &default
+  analytics:
+    summary: https://dashboard.mckesson.com/views/Dataexplorer/View
+  generics:
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default  

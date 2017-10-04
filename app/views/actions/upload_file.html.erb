@@ -1,0 +1,28 @@
+<div style="font-family: 'Exo', serif;">
+<div class="row" >
+        <div class="col-2"></div>
+        <div class="col-4 ">
+        <h4>Upload your document</h4>
+        </div>
+</div>
+<div class="row p-6 ">
+    <div class="col-2"></div>
+    <div class="col-4 ">
+        <div class="row border rounded  p-4 m-2">
+            <%= form_with(url: actions_process_file_path, local: true, method: :post) do |f| %>
+                <div class="form-group">
+                    <%= f.file_field :content ,class: "form-control"%>
+                </div>
+                <div class="form-group">
+                        <label for="Tags">Tag your document (optional)</label>
+                        <%= f.text_field :tags ,class: "form-control" %>                    
+                    </div>
+                <div class="control-group">
+                    <%= f.submit "Upload", class: "btn btn-primary form-control" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="col-6"></div>
+</div>
+</div>
