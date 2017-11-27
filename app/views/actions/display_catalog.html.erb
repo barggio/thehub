@@ -1,0 +1,36 @@
+<div class="card" style="width: 50rem; margin:2in; margin-top:0.5in">
+    <div class="card-body">
+        <div class="form-header default-color">
+            <h3>
+                <i class="fa fa-list"></i> List of datasets</h3>
+        </div>
+<table class="table table-striped">
+ <!--   
+    <thead class="thead-inverse">
+        <tr>
+            <td>Dataset Name</td>
+            <td>Link</td>
+            <td></td>
+        </tr>
+    </thead>
+-->
+    <tbody>
+        <% @objs.each do |l| %>
+            <tr>
+                <td>
+                    <%= l["description"] %>
+                </td>
+                <td>
+                    <a href="/session/view_dataset?session=<%= l["wid"] %>">View</a>
+                </td>
+                <td>
+                    <a href="/session/delete_dataset?session=<%= l["wid"] %>"><i class="fa fa-trash"></i></a>
+                </td>
+
+            </tr>
+            <% end %>
+    </tbody>
+</table>
+
+</div>
+</div>

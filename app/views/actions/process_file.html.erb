@@ -1,0 +1,30 @@
+<script type='text/javascript' src='https://dashboard.mckesson.com/javascripts/api/tableau-2.0.0.min.js'></script>
+<script type='text/javascript'>
+    (function ($) {
+        $('.actions.process_file').ready(function () {
+            //debugger;
+            var vizDiv = document.getElementById("vizSummary");
+            var url = "<%= @url %>"
+
+            var options = {
+                width: '100%',
+                height: '100%',
+                toolbar: 'no',
+                showAppBanner: 'false',
+                showShareOptions: 'true',
+                onFirstInteractive: function () {
+                    workbook = viz.getWorkbook();
+                    activeSheet = workbook.getActiveSheet();
+                }
+            }
+            viz = new tableau.Viz(vizDiv, url, options);
+        });
+    })(jQuery);
+</script>
+<div class="row" style="height:25px"></div>
+<div class="row">
+    <div class="col-9">
+        <div id="vizSummary" style="height: 500px;"></div>
+    </div>
+    <div class="col-1"></div>
+</div>

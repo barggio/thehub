@@ -1,8 +1,9 @@
 default: &default
   analytics:
-    summary: https://dashboard.mckesson.com/views/Dataexplorer/View
-  generics:
-
+    summary: https://dashboard.mckesson.com/views/Dataexplorer/View?:embed=yes
+  item_sub:
+    upload_validation: https://dashboard.mckesson.com/#/views/ItemValidation/ValidationResult
+    itemsub_listing: https://dashboard.mckesson.com/#/views/ItemValidation/ItemsubDashboard
 development:
   <<: *default
 

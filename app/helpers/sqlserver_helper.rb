@@ -1,6 +1,34 @@
 module SqlserverHelper
+    def self.database_sp(resource, database, schema, spname, parameters)
+        configname = (resource == nil) ?  "sqlserver" : resource 
+        config = Rails.configuration.database_configuration[ENV["RAILS_ENV"]][configname]
+        client = TinyTds::Client.new username: config['username'], password: config['password'], host: config['host']        
+        cmdstr = "EXEC #{database}.#{schema}.#{spname}"
+        paramstr = ""
+        separator = ""
+        parameters.each do |t|
+            if (paramstr != '')
+                separator = ','
+            end
+            paramstr = "#{paramstr}#{separator}'#{t}'"
+        end
+        cmdstr = "#{cmdstr} #{paramstr}"
+        #cmdstr = 'EXEC PARIS_REPORTER.dbo.usp_get_session_data ''de24c0820149eff4749cfb57e20552ee'''
+        result = client.execute(cmdstr) 
+        output = []
+        result.map{|row| output.push(row)}
+        #result.each do |row|
+        #    output.push(row)
+        #end
+        #Be responsible and close :)
+        client.close
+        output
+    end
     #Usage: result = SqlserverHelper.database_insert(nil, "PARIS_REPORTER", "dbo", "t_sessions", ["hash","user_id"], [["test","etrudx3"]])
     def self.database_insert(resource, database, schema, table, column_list, content_rows)
+        
+        if (content_rows != nil)
+        if (content_rows.count > 0)
         configname = (resource == nil) ?  "sqlserver" : resource 
         config = Rails.configuration.database_configuration[ENV["RAILS_ENV"]][configname]
         client = TinyTds::Client.new username: config['username'], password: config['password'], host: config['host']        
@@ -11,6 +39,8 @@ module SqlserverHelper
         id = result.insert  
         #Be responsible and close :)
         client.close
+        end 
+        end
     end
 
     #Usage: result = SqlserverHelper.database_select(nil, "PARIS_REPORTER", "dbo", "T_RPT_LEAKAGE_TRACKER", ["SNAP_PD","RID","KPISET"], "top 10", nil)
@@ -66,7 +96,7 @@ module SqlserverHelper
         config = Rails.configuration.database_configuration[ENV["RAILS_ENV"]][configname]
         client = TinyTds::Client.new username: config['username'], password: config['password'], host: config['host']
         condition = (condition == nil) ? "1 = 1" : condition
-        cmdstr = "DELETE FROM #{database}.#{schema}.#{table} where #{condition}"        
+        cmdstr = "DELETE FROM #{database}.#{schema}.#{table} where #{condition}"   
         result = client.execute(cmdstr)
         output = result.do
         #Be responsible and close :)

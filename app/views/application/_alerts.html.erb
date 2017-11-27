@@ -1,7 +1,8 @@
-<% if notice || alert %>
-  <div class="border border-warning rounded p-2 m-2">
-    <h4><i class="fa fa-exclamation-triangle"></i>Authentication</h4>
-    <p class="text-info"><%= notice %></p>
-    <p class="text-danger"><%= alert %></p>
-  </div>
-<% end %>
+<!-- notice || -->
+  <% if alert %>
+    <div class="border border-warning rounded p-2 m-2">
+      <h4><i class="fa fa-exclamation-triangle"></i>Authentication</h4>
+      <p class="text-info"><%= notice %></p>
+      <p class="text-danger"><%= alert %></p>
+    </div>
+  <% end %>

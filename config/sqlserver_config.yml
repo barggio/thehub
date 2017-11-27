@@ -1,0 +1,15 @@
+default: &default
+  items:
+    db: PARIS_REPORTER
+    schema: dbo
+    table: T_ITEMS
+    columns: ["MATERIAL_NO", "GCN"]
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default  

@@ -1,12 +1,12 @@
 module SessionHelper
-#SessionHelper.processdata("1c2134ceed9b692a065bd1ed907f252b63178eeab0db50ad175f1f6693a29c4c", "/home/nopparit/workspace/thehub/uploads/1c2134ceed9b692a065bd1ed907f252b63178eeab0db50ad175f1f6693a29c4c_HappyExample.xlsx")
-
-#id = SessionHelper.logsession("1c2134ceed9b692a065bd1ed907f252b63178eeab0db50ad175f1f6693a29c4c")
-    def self.processdata(id, path)
+    #SessionHelper.processdata("1c2134ceed9b692a065bd1ed907f252b63178eeab0db50ad175f1f6693a29c4c", "/home/nopparit/workspace/thehub/uploads/1c2134ceed9b692a065bd1ed907f252b63178eeab0db50ad175f1f6693a29c4c_HappyExample.xlsx")
+    #id = SessionHelper.logsession("1c2134ceed9b692a065bd1ed907f252b63178eeab0db50ad175f1f6693a29c4c")
+    def self.processdata(userid, id, path)
         outcome = ExcelHelper.parse(path)
         if (outcome.length > 0) 
+            sessionid = logsession(userid, id)
             for i in 0..outcome.length-1
-                sessionid = logsession(id)
+                # Each sheet
                 fieldid = logsessiondef(id, outcome[i][0], outcome[i][1][0][1])
                 fields = SqlserverHelper.database_select(nil,"PARIS_REPORTER","dbo","t_columns",["col_id"],nil,"session_id = '#{id}' and page = '#{outcome[i][0]}'", "order by col_seq")
                 logsessiondata(fields, outcome[i][1])
@@ -20,14 +20,14 @@ module SessionHelper
         end
     end
 
-    def self.logsession(id)
+    def self.logsession(userid, id)
        sessionid = SqlserverHelper.database_insert(
            nil, 
            "PARIS_REPORTER",
            "dbo",
            "t_sessions",
            ["session_id", "user_id"],
-           [[id, 'etrudx3']]) 
+           [[id, userid]]) 
        sessionid
     end
 
@@ -80,5 +80,11 @@ module SessionHelper
                 payload)    
             payload.clear
         end
+    end
+
+    def self.get_latest_session(profile, userid)
+       sessions = SqlserverHelper.database_select(profile ,"PARIS_REPORTER","dbo","t_workspaces",["wid", "crte_dt"],nil,"user_id = '#{userid}'", "order by crte_dt desc")
+       asession = sessions.sort_by{|s| s["crte_dt"]}.last
+       asession["wid"]
     end
 end

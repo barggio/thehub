@@ -1,0 +1,52 @@
+<%= form_for(@parts,  url: session_display_data_path, method:"POST") do |f| %>
+    <div class="text-center">
+        <%= f.submit "Finish", class: "btn btn-default waves-effect waves-light" %>
+    </div>
+
+    <div class="row">
+<% if @multiple == true %>
+<div class="col-6">
+<% else %>
+<div class="col-12">
+<% end %>
+    <div class="card" style="margin:0.25in; margin-top:0.5in">
+        <div class="card-body">
+            <!--Header-->
+            <div class="form-header default-color">
+                <h3>
+                    <i class="fa fa-table"></i> Select fields from source 1:</h3>
+            </div>
+            <% @choices1.each do |c| %>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="i<%= c[0] %>" value="<%= c[2] %>"><%= c[1] %></label>
+                </div>
+            <% end %>
+        </div>
+    </div>
+        </div>
+    <% if @multiple == true %>
+        <div class="col-6">
+        <div class="card" style="margin:0.25in; margin-top:0.5in">
+            <div class="card-body">
+                <!--Header-->
+                <div class="form-header default-color">
+                    <h3>
+                        <i class="fa fa-table"></i> Select fields from source 2:</h3>
+                </div>
+                <% @choices2.each do |c| %>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="j<%= c[0] %>" value="<%= c[2] %>">
+                            <%= c[1] %>
+                        </label>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        </div>
+        <% end %>
+    </div>
+
+<% end %>

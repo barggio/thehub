@@ -1,7 +1,6 @@
 
 module ExcelHelper 
     def self.parse(path) 
-        
         workbook = Roo::Spreadsheet.open path 
         worksheets = workbook.sheets 
         puts "Found #{worksheets.count} worksheets" 

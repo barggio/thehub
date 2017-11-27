@@ -21,7 +21,23 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
+  sqlserver:
+    username: dw_report_user
+    password: Mck1Corp
+    host: 10.5.43.49
+  gfa_reports:
+    username: dw_report_user
+    password: Mck1Corp
+    host: 10.5.43.49
+  item_master:
+    username: ETL_MOD
+    password: etl17mod
+    host: 10.9.139.10
+    port: 1433
+    database: manhattan 
+  hana:
+    username: etrudx3
+    password: Nopparit01
 development:
   <<: *default
   database: thehub_development

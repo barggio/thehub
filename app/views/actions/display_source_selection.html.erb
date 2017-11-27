@@ -1,0 +1,25 @@
+<div class="card" style="width: 26rem; margin:2in; margin-top:0.5in">
+    <div class="card-body">
+        <!--Header-->
+        <div class="form-header default-color">
+            <h3>
+                <i class="fa fa-database"></i> Pick source:</h3>
+        </div>
+        <%= form_for(@parts,  url: session_display_logic_path, method:"POST") do |f| %>
+            <%= hidden_field_tag(:wid, value=@wid)%>
+            <div class="form-group">
+                <label for="trx_trx1">Source 1</label>
+                <%= f.select(:trx1, options_for_select(@choices), {}, { :class => 'form-control' }) %>
+            </div>
+            <% if @multiple == true %>
+            <div class="form-group">
+                <label for="trx_trx2">Source 2</label>
+                <%= f.select(:trx2, options_for_select(@choices), {}, { :class => 'form-control' }) %>
+            </div>
+            <% end %>
+            <div class="text-center">
+                <%= f.submit "Next", class: "btn btn-default waves-effect waves-light" %>
+            </div>
+            <% end %>
+    </div>
+</div>

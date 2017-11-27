@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark ">
   <a class="navbar-brand" href="/">thehub</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,22 +8,51 @@
     <ul class="navbar-nav mr-auto">
       <% if !@is_logged_in %>
         <li class="nav-item">
-          <a class="nav-link" href="/users/sign_in"><i class="fa fa-recycle"></i> Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/sign_up"><i class="fa fa-plus-circle"></i> Register</a>
+          <a class="nav-link" href="/users/sign_in"><i class="fa fa-sign-in"></i> Login</a>
         </li>
       <% elsif @is_admin %>
       <% elsif @is_user %>
       <% end %>
 
       <% if @is_logged_in %>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/edit"><i class="fa fa-grav"></i> Profile</a>
+        <!--<li class="nav-item"><i class="nav-link"><%= "#{@user.email}" %></i></li>-->
+
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-dashboard"></i> Data Set
+          </a>
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a href="/session/display_catalog">
+                <i class="fa fa-info-circle"></i> View data</a>
+            </li>
+            <li class="nav-item">
+              <a href="/session/display_choose_type"><i class="fa fa-file-text-o"></i> New session</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-file-excel-o"></i> Item Substitution
+          </a>
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a href="/actions/itemsub_listing">
+                <i class="fa fa-list"></i> Main page</a>
+            </li>
+            <li class="nav-item">
+              <a href="/actions/upload_file">
+                <i class="fa fa-file-excel-o"></i> New upload</a>
+            </li>
+            <li class="nav-item">
+              <a href="/actions/display_itemsub_result">
+                <i class="fa fa-flag"></i> Show recent upload</a>
+              <!-- Total # of items uploaded and/or if it is successful-->
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
-            <i class="fa fa-window-close"></i> <%= "#{@user.email} (#{@user.role})" %>
+            <i class="fa fa-sign-out"></i>Log out
           <% end %>
         </li>
       <% end %>

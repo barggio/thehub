@@ -1,0 +1,28 @@
+<div class="card" style="width: 26rem; margin:2in; margin-top:0.5in">
+    <div class="card-body">
+        <!--Header-->
+        <div class="form-header default-color">
+            <h3>
+                <i class="fa fa-table"></i> Choose data:</h3>
+        </div>
+
+        <%= form_for(@session,  url: session_display_source_selection_path , method:"POST") do |f| %>
+            <%= hidden_field_tag(:wid, value=@session.wid)%>
+            <div class="form-group">
+                <input name="multiple" type="radio" class="with-gap" id="c1" value="single" checked>
+                <label for="c1">Single source</label>
+            </div>
+
+            <div class="form-group">
+                <input name="multiple" type="radio" class="with-gap" id="c2" value="multiple">
+                <label for="c2">Multiple sources</label>
+            </div> 
+
+            <div class="text-center">
+                <%= f.submit "Next", class: "btn btn-default waves-effect waves-light" %>
+            </div>
+
+            <% end %>
+    </div>
+</div>
+

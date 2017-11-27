@@ -1,0 +1,179 @@
+#+TITLE: My Inbox
+#+OPTIONS: TOC:nil
+#+STARTUP: overview
+#+REVEAL_PLUGINS: (highlight)
+#+OPTIONS: num:nil
+#+OPTIONS: reveal_slide_number:nil
+#+REVEAL_DEFAULT_FRAG_STYLE: roll-in
+#+TODO: TODO WIP Waiting | DONE
+* Inbox
+
+* Next-up
+** WIP Finish the app [recbi5tUtMciGmuOa]
+SCHEDULED: <2017-10-23 Mon>
+- Note taken on [2017-10-25 Wed 10:48]
+** WIP Demo app [rec3JPtGPTt0klWMo]
+SCHEDULED: <2017-10-24 Tue>
+- Note taken on [2017-10-25 Wed 10:48]
+** WIP GPR 3.0 Change (Skip NDC) [recCNowxYR9tNXNYE]
+SCHEDULED: <2017-10-24 Tue>
+- Note taken on [2017-10-09 Mon 14:27] \\
+
+  Vicki request that we do a impact analysis on the change (# customer, #GPR fluctuation)
+
+- Note taken on [2017-10-09 Mon 11:04] \\
+
+  Complete first draft of user story
+
+- Note taken on [2017-10-09 Mon 10:38] \\
+
+  Need to write user story for Debbie in Jira
+
+
+
+:USER_STORY:
+
+SO: ????
+
+Component: Gx Program
+
+Priority: ????
+-----------------------------------------------------------
+As a system, I want to calculate the compliance metric GPR based on the following hierarchy.
+- Invoice GCN
+- OS Main GCN
+- WAC
+- AWP
+
+With this feature, items (NDCs) within the same GCN will be extended with the same price and thus reducing the confusion on reports and communications.
+
+If feature is successfully implemented, 
+- items (NDCs) under the same GCN with varying "invoiced" price-per-unit will have consistent price of "invoiced" GCN (a).
+- items (NDCs) under the same GCN with varying "OneStop Main" price-per-unit will have consistent price of "OneStop Main" GCN (b)
+
+(a) Invoiced GCN is calculated by on weighted average of all NDCs across GCN.
+
+(b) OneStop Main GCN is calculated by simple average of all NDCs across GCN.
+
+:END:
+** WIP Write-up on SOP on dashboard [recIYLK6lWDc8feHe]
+- Note taken on [2017-10-25 Wed 10:48]
+:ACTION_ITEMS:
+
+- Create diagram
+
+- Do document
+
+- Set up schedule with Veera
+
+:END:
+
+** WIP Connect to HANA XS data [reckGslNjPvhzLZ7e]
+- Note taken on [2017-10-25 Wed 10:48]
+** TODO send test data to Connect [rec8bnjv36tp9qsHD]
+- Note taken on [2017-10-25 Wed 10:48]
+** TODO Total Rewards migration (Edmond) [rec7ZGtKJyXe3uvXH]
+- Note taken on [2017-10-09 Mon 11:05] \\
+
+  Wait for Edmond to finish monthly Total Rewards delivery
+
+- Mon Oct  9 10:11:39 PDT 2017
+
+** TODO GPR 3.0 Change (BPR 3/6 Ed) [recJMEkdeZrJ8gPMI]
+- Note taken on [2017-10-09 Mon 11:07] \\
+
+  Need to look at code from Ed
+
+- Mon Oct  9 10:11:39 PDT 2017
+
+** TODO How to sync stuffs [recPLkEopT1U9jDIC]
+- Note taken on [2017-10-25 Wed 10:49]
+* Ignore or throw away
+* Tickler
+* Purgatory
+** DONE Angela datasource analysis [recmLvaKgjkxrul5D]
+- Note taken on [2017-10-25 Wed 10:49]
+** DONE Issue with dashboard:leakage [recUTbZNlx3Vqmo9G]
+- Note taken on [2017-10-25 Wed 10:49]
+   - Field name and parameter name are colliding
+
+   - Resolution: Alias field name to arbitrary name, thus keeping parameter interface
+
+** DONE Send purging code to DBA [recR0pLHn7dgl0AUS]
+- Note taken on [2017-10-25 Wed 10:50]
+** DONE talk to James Brownson [rec5eANVeynOcyvbm]
+- Note taken on [2017-10-25 Wed 10:50]
+** DONE Analyze issue with missing returns [recApIqIph9AondPr]
+- Note taken on [2017-10-25 Wed 10:50]
+** DONE Program team request [rec8QLtKWUYqxD1YZ]
+SCHEDULED: <2017-10-09 Mon>
+- Note taken on [2017-10-10 Tue 10:30] \\
+  I looked at the BPR processing of this customer.  And the transactions had become very irregular (no steady dispense or sales).   Essentially, during the month of April – Jun, the customer had not purchased anything from McKesson thus leading to irregular BPR.  
+  
+  This type of dip in BPR or GPR is usually caused by lack of transactions for long period of time.  Additionally, BPR dips into negative region due to high return.  GPR/BPR works well and quite forgiving in terms of irregular transaction pattern but with long period of inactivity, the trend usually looks like sudden drop.  
+  
+  In conclusion, It is not something that is caused by McKesson SLA or our miscalculation.  
+  
+  Month	Sales	Dispense	Notes
+  Feb 2017	1199.70	850.50	
+  Mar 2017	719.70	719.70	
+  April 2017	0	-465.70	
+  May 2017	0	-465.60	
+  June 2017	0	0	
+  July 2017	143.40	0
+- Note taken on [2017-10-09 Mon 14:21] \\
+
+  The classification process rely on two separate sources of referential data
+
+  1) MasterData (If product is carried by McKesson)
+
+  2) FDB (If product is not carried by McKesson)
+
+     - Fields inside FDB used to classify an items
+
+       A) GNRC_IND  (Flag to identify if the drug maybe generics)
+
+       B) GNRC_MANUFACTURER_IND (Flag to identify if the manufacturer may manufacture generics)
+
+       C) GNRC_NAMED_DRUG_IND (Flag to identify if the item may be a named generics drug)
+
+  
+
+     These are existing logic that were in place for GPR/BPR program.
+
+     However, from the investigation, B) seems to cause the inconsistent classification in recent issues.
+
+     Although we may need to make sure that changing the criteria will not impact the "currently correctly classified" items
+
+- Note taken on [2017-10-09 Mon 13:53] \\
+
+  Check the Generics/Brand classification
+
+- Thu Oct  5 10:00:00 PDT 2017
+
+
+
+
+** DONE Brand issue [rectehoAGSTULl6hp]
+SCHEDULED: <2017-10-10 Tue>
+- Note taken on [2017-10-18 Wed 11:21] \\
+  Steps
+  1) [X] Get all NDCs in the system
+  2) [X] Classify with IW/FDB
+  3) [X] Load FDA data
+  4) [ ] Classify FDB with ANDA
+  5) [ ] Load 3rd party data
+  6) [ ] Classify with 3rd party sources
+  7) [ ] Classify using normal approach [1/1/1]
+- Note taken on [2017-10-17 Tue 10:39] \\
+  Logic
+  - Pull data from web
+  - Pull data from FDA
+  - Hierarchy of classification
+    IW
+    Drug Application filing
+    3rd Party data
+    Original approach
+- Note taken on [2017-10-10 Tue 12:07] \\
+  Need item sample to test
+

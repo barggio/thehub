@@ -1,0 +1,12 @@
+default: &default
+  items:
+    url: etshanaexpress.westeurope.cloudapp.azure.com:8000/Datahub/JSON_POC/services.items.xsjs?cmd=select&token=alksjepoewkjcmvnzco10987340971
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default  

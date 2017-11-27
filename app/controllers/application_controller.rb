@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   def get_user
     @user = current_user
     @is_logged_in = user_signed_in?
-    @is_user = @is_logged_in && @user.role.upcase == 'USER'
-    @is_admin = @is_logged_in && @user.role.upcase == 'ADMIN'
+    @is_user = @is_logged_in
+    @is_admin = @is_logged_in
   end
 
   def auth_admin
