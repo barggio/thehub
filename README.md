@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Rails app shows the following features
 
-Things you may want to cover:
+* SQL Server back-end connection
+* HANA XS basck-end connection
+* Data blending feature (demo)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Environment
+| VM: Ubuntu
+| DB: SQL Server
+| Datasource: HANA XS (Sandbox on Azure)
